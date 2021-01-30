@@ -1,0 +1,4 @@
+include ':subreddit-data'
+include ':subreddit-domain'
+include ':app'
+rootProject.name = "subreddit-challenge"
