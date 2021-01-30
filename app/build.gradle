@@ -32,6 +32,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
     buildFeatures {
         dataBinding true
@@ -39,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':subreddit-domain')
+    implementation project(path: ':subreddit-data')
 
     implementation kotlin.jetbrainsKotlinStdLib
     implementation kotlin.coreKtx
@@ -56,6 +59,10 @@ dependencies {
     kapt hilt.kaptHiltAndroidCompiler
     implementation hilt.hiltJetpack
     kapt hilt.hiltAndroidxHiltCompiler
+
+    implementation androidx.roomRuntime
+    implementation androidx.room
+    kapt androidx.kaptRoom
 
 
     implementation network.retrofit

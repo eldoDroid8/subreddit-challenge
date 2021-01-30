@@ -1,6 +1,7 @@
 package `in`.ev.subreddit.data.di.module
 import `in`.ev.data.model.ErrorEntity
 import `in`.ev.subreddit.data.BuildConfig
+import `in`.ev.subreddit.data.remote.SubRedditApi
 import `in`.ev.subreddit.data.utils.NetworkConstants
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -68,6 +69,12 @@ object NetworkModule {
     @Singleton
     fun provideMoshiConverterFactory(moshi: Moshi): MoshiConverterFactory{
         return  MoshiConverterFactory.create(moshi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSubRedditApiService(retrofit: Retrofit): SubRedditApi {
+        return retrofit.create(SubRedditApi::class.java)
     }
 
 }

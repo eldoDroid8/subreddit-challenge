@@ -30,10 +30,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
 }
 
 dependencies {
+    implementation project(path: ':subreddit-domain')
 
     implementation kotlin.jetbrainsKotlinStdLib
     implementation kotlin.coreKtx
