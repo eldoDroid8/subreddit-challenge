@@ -1,12 +1,6 @@
-package `in`.ev.subreddit.data.model.local
+package `in`.ev.subreddit.domain.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.squareup.moshi.Json
-
-@Entity(tableName = "posts")
-class TblSubReddit (
-    @PrimaryKey
+data class SubRedditPost (
     val id: String,
     val author: String,
     val authorFullname: String,
@@ -21,5 +15,5 @@ class TblSubReddit (
     val title: String,
     val totalAwardsReceived: Int?,
     val ups: Int?,
-    val url: String?
+    val url: String?,
 )

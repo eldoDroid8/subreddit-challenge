@@ -44,6 +44,7 @@ dependencies {
     kapt hilt.kaptHiltAndroidCompiler
     kapt hilt.hiltAndroidxHiltCompiler
     implementation hilt.hiltJetpack
+    implementation androidx.paging
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
