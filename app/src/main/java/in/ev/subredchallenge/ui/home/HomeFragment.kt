@@ -1,11 +1,8 @@
 package `in`.ev.subredchallenge.ui.home
 
 import `in`.ev.subredchallenge.BR
-import `in`.ev.subredchallenge.R
 import `in`.ev.subredchallenge.databinding.FragmentHomeBinding
 import `in`.ev.subredchallenge.ui.LoaderStateAdapter
-import `in`.ev.subredchallenge.ui.RedditPostAdapter
-import `in`.ev.subredchallenge.utils.POST_DIFF_UTIL
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

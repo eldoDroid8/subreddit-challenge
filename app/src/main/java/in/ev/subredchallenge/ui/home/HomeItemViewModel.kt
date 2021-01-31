@@ -1,12 +1,10 @@
 package `in`.ev.subredchallenge.ui.home
 
-import `in`.ev.subredchallenge.ui.base.BaseListItemViewModel
-import `in`.ev.subredchallenge.ui.RecyclerviewItemSelected
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class HomeItemViewModel(val post: SubRedditPost?): BaseListItemViewModel {
+class HomeItemViewModel(val post: SubRedditPost?) {
     val id = post?.id
     val title: LiveData<String> = MutableLiveData(post?.title)
     val author: LiveData<String> = MutableLiveData(post?.author)

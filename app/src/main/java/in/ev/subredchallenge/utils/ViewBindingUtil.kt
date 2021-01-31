@@ -1,10 +1,6 @@
 package `in`.ev.subredchallenge.utils
 
-import `in`.ev.subredchallenge.R
-import `in`.ev.subredchallenge.ui.RecyclerviewItemSelected
-import `in`.ev.subredchallenge.ui.RedditPostAdapter
 import `in`.ev.subredchallenge.ui.home.HomeItemViewModel
-import `in`.ev.subreddit.domain.model.SubRedditPost
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
@@ -13,13 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-@BindingAdapter("homeAdapter","itemClickListener", requireAll = false)
+/*@BindingAdapter("homeAdapter","itemClickListener", requireAll = false)
 fun addDataToCharacterList(
     recyclerView: RecyclerView,
-    homeData: MutableList<HomeItemViewModel>?,
-    clickListener: RecyclerviewItemSelected<SubRedditPost>
+    homeData: MutableList<HomeItemViewModel>?
 ) {
-    try {
+    *//*try {
         homeData?.let {
             val adapter =
                     RedditPostAdapter(R.layout.list_item_home ,homeData, POST_DIFF_UTIL )
@@ -29,8 +24,8 @@ fun addDataToCharacterList(
         }
     } catch (e: ClassCastException) {
         e.printStackTrace()
-    }
-}
+    }*//*
+}*/
 
 @BindingAdapter("imageUrl", "placeholderData", requireAll = false)
 fun setImageUrl(imageView: ImageView, url: String?, placeholderIcon: Drawable) {
