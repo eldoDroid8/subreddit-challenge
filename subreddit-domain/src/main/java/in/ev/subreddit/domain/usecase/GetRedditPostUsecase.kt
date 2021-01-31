@@ -1,5 +1,9 @@
 package `in`.ev.subreddit.domain.usecase
 
-interface GetRedditPostUsecase<out T> {
-    suspend fun execute(postId: String, limit: Int): T
+import `in`.ev.subreddit.domain.model.SubRedditPost
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+
+interface GetRedditPostUsecase {
+    suspend fun execute(postId: String, limit: Int): Flow<PagingData<SubRedditPost>>
 }

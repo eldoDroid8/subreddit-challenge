@@ -14,10 +14,10 @@ class SubRedditRemoteDataSource @Inject constructor(
     retrofitClient,
     moshiAdapter
 ) {
-    suspend fun getSubRedditPosts(limit: String,after: String = ""):
+    suspend fun getSubRedditPosts(limit: String,after: String = "", before: String = ""):
             EntityResultWrapper<SubRedditEntity> {
         return getResponse(
-            request = { subRedditApi.getSubReddits(limit, after)}
+            request = { subRedditApi.getSubReddits(limit, after, before)}
         )
     }
 

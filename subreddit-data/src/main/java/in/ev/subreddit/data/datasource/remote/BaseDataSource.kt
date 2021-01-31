@@ -21,24 +21,22 @@ abstract class BaseDataSource constructor(
         return try {
             val result = request.invoke()
             return if (result.isSuccessful) {
-                if (null == result.body()) {
-                    Error(ErrorEntity(status_message = "Empty response", throwable = Throwable()))
-                } else {
-                    Success(result.body())
-                }
+                   Success(result.body()!!)
             } else {
                 val errorResponse: ErrorEntity = parseError(result)
                 Error(errorResponse)
             }
         } catch (e: IOException) {
-            Error(ErrorEntity(status_message = "Unknown error", throwable = e))
+            Error(ErrorEntity(status_message = "Unknown error"))
         } catch (e: SocketException) {
-            Error(ErrorEntity(status_message = "Please check your network connection", throwable
-            = e))
+            Error(ErrorEntity(status_message = "Please check your network connection"))
         } catch (e: HttpException) {
             val errorResponse = convertErrorBody(e)
             Error(errorResponse)
+        } catch (e: KotlinNullPointerException) {
+            Error(ErrorEntity(status_message = "Empty response"))
         }
+
     }
 
     private fun parseError(response: Response<*>): ErrorEntity {
@@ -48,20 +46,20 @@ abstract class BaseDataSource constructor(
         )
         return try {
             val errorEntity = converter.convert(response.errorBody()) ?: ErrorEntity(
-                status_message = "Unknown " + "error", throwable = Throwable())
+                status_message = "Unknown " + "error")
             errorEntity
 
         } catch (e: IOException) {
-            ErrorEntity(throwable = e)
+            ErrorEntity(status_message = "Io Exception")
         }
     }
 
     private fun convertErrorBody(throwable: HttpException): ErrorEntity {
         return try {
             val response = moshiErrorAdapter.fromJson(throwable.response()?.errorBody()?.source())
-            response ?: ErrorEntity(status_message = "Unknown Error",throwable = throwable)
+            response ?: ErrorEntity(status_message = "Unknown Error")
         } catch (exception: Exception) {
-            val errorEntity = ErrorEntity(status_message = "Unknown error",throwable = throwable)
+            val errorEntity = ErrorEntity(status_message = "Unknown error")
             errorEntity
         }
     }

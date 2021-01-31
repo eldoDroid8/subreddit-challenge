@@ -72,7 +72,7 @@ class SubRedditRemoteMediator (
                 }
             }
             is EntityResultWrapper.Error -> {
-                MediatorResult.Error(response.error.throwable)
+                MediatorResult.Error(Throwable(response.error.status_message))
             }
         }
         //return MediatorResult.Success(endOfPaginationReached = true)

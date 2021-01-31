@@ -7,6 +7,7 @@ import `in`.ev.subreddit.data.local.SubRedditDatabase
 import `in`.ev.subreddit.data.model.local.TblSubReddit
 import `in`.ev.subreddit.data.remote.SubRedditApi
 import `in`.ev.subreddit.data.repository.local.RedditDbRepositoryImpl
+import `in`.ev.subreddit.data.repository.remote.RemoteRepoImpl
 import android.content.Context
 import androidx.paging.PagingData
 import androidx.room.Room
@@ -56,9 +57,16 @@ object DataSourceModule {
 object RepoModule {
     @Provides
     @Singleton
+
     fun provideRepoImpl(
-        db:SubRedditDatabase, dataSource: SubRedditRemoteDataSource
-    ): SubRedditPostsRepository<Any> {
-        return RedditDbRepositoryImpl(db, dataSource)
+        dataSource: SubRedditRemoteDataSource
+    ): SubRedditPostsRepository {
+        return RemoteRepoImpl(dataSource)
     }
+
+    /*fun provideRepoImpl(
+        db:SubRedditDatabase, dataSource: SubRedditRemoteDataSource
+    ): SubRedditPostsRepository {
+        return RedditDbRepositoryImpl(db, dataSource)
+    }*/
 }

@@ -4,27 +4,51 @@ import `in`.ev.domain.repository.SubRedditPostsRepository
 import `in`.ev.subreddit.data.datasource.SubRedditRemoteMediator
 import `in`.ev.subreddit.data.datasource.remote.SubRedditRemoteDataSource
 import `in`.ev.subreddit.data.local.SubRedditDatabase
-import `in`.ev.subreddit.data.model.local.TblSubReddit
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import `in`.ev.subreddit.data.mappers.toDomain
+import `in`.ev.subreddit.domain.model.SubRedditPost
+import androidx.paging.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class RedditDbRepositoryImpl @Inject constructor(
     private val db: SubRedditDatabase, private val remoteDataSource:
     SubRedditRemoteDataSource
-) : SubRedditPostsRepository<Flow<PagingData<TblSubReddit>>> {
+) : SubRedditPostsRepository {
 
-    @ExperimentalPagingApi
+    /*@ExperimentalPagingApi
     override fun getSubRedditPosts(
         postId: String,
         pageSize: Int
-    ): Flow<PagingData<TblSubReddit>> {
-        return Pager(
+    ): Flow<PagingData<SubRedditPost>> {
+        if (db == null) throw IllegalStateException("Database is not initialized")
+        val pagingFlow =  Pager(
             config = PagingConfig(pageSize),
             remoteMediator = SubRedditRemoteMediator(db, remoteDataSource, postId),
             pagingSourceFactory = { db.posts().getPostsById(postId) }).flow
+        val domainFlow = pagingFlow.flatMapMerge {
+            flow {
+              emit(it.map { it.toDomain(it) })
+            }
+        }
+        return domainFlow.flowOn(Dispatchers.Default)
+    }*/
+
+    @OptIn(ExperimentalPagingApi::class, FlowPreview::class)
+    override fun getSubRedditPosts(
+        postId: String,
+        pageSize: Int
+    ) = Pager(
+        config = PagingConfig(pageSize),
+        remoteMediator = SubRedditRemoteMediator(db, remoteDataSource, postId),
+        pagingSourceFactory = { db.posts().getPostsById(postId) }).flow.flatMapMerge {
+        flow {
+            emit(it.map { it.toDomain(it) })
+        }
     }
 }

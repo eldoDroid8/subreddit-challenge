@@ -7,7 +7,8 @@ import retrofit2.http.Query
 
 interface SubRedditApi {
     @GET("Android/hot.json?")
-    suspend fun getSubReddits(@Query("limit") limit: String, @Query("after") after: String):
+    suspend fun getSubReddits(@Query("limit") limit: String, @Query("after") after: String,
+                              @Query("before") before: String):
             Response<SubRedditEntity>
 
 }

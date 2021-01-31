@@ -52,10 +52,12 @@ dependencies {
     implementation androidx.recyclerview
     implementation androidx.constraintLayout
     implementation androidx.cardView
+    implementation androidx.paging
 
     implementation google.material
 
     implementation hilt.hiltAndroid
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt hilt.kaptHiltAndroidCompiler
     implementation hilt.hiltJetpack
     kapt hilt.hiltAndroidxHiltCompiler

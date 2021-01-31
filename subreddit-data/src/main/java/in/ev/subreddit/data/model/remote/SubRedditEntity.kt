@@ -13,9 +13,9 @@ data class SubRedditEntity(
 @JsonClass(generateAdapter = true)
 data class Data(
     @Json(name = "after")
-    val after: String,
+    val after: String?,
     @Json(name = "before")
-    val before: String,
+    val before: String?,
     @Json(name = "children")
     val children: List<Children>,
 )
@@ -46,23 +46,17 @@ data class SubRedditInfo(
     val subreddit: String,
     @Json(name = "subreddit_id")
     val subredditId: String,
-    @Json(name = "subreddit_name_prefixed")
-    val subredditNamePrefixed: String,
     @Json(name = "subreddit_type")
     val subredditType: String,
     @Json(name = "thumbnail")
     val thumbnail: String,
-    @Json(name = "thumbnail_height")
-    val thumbnailHeight: Int,
-    @Json(name = "thumbnail_width")
-    val thumbnailWidth: Int,
     @Json(name = "title")
     val title: String,
     @Json(name = "total_awards_received")
-    val totalAwardsReceived: Int,
+    val totalAwardsReceived: Int?,
     @Json(name = "ups")
-    val ups: Int,
+    val ups: Int?,
     @Json(name = "url")
-    val url: String,
+    val url: String?,
 )
 
