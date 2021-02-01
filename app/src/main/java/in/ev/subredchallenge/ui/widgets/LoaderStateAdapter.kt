@@ -1,12 +1,9 @@
-package `in`.ev.subredchallenge.ui
+package `in`.ev.subredchallenge.ui.widgets
 
 import `in`.ev.subredchallenge.R
 import `in`.ev.subredchallenge.databinding.RecycleLoadStateItemBinding
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter

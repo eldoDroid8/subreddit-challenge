@@ -2,7 +2,8 @@ package `in`.ev.subredchallenge.ui.home
 
 import `in`.ev.subredchallenge.BR
 import `in`.ev.subredchallenge.databinding.FragmentHomeBinding
-import `in`.ev.subredchallenge.ui.LoaderStateAdapter
+import `in`.ev.subredchallenge.ui.ViewState
+import `in`.ev.subredchallenge.ui.widgets.LoaderStateAdapter
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import android.content.Intent
 import android.net.Uri
@@ -13,7 +14,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -41,6 +44,7 @@ class HomeFragment : Fragment() {
         initDataBinding()
         initRecycerView()
         fetchPosts()
+        observeData()
         /*setUpSearch()
         observeData()*/
     }
@@ -69,6 +73,30 @@ class HomeFragment : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         }
+    }
+
+    private fun observeData() {
+        homeViewModel.stateNav.observe(viewLifecycleOwner, {
+            when (it) {
+                is ViewState.Failure -> {
+                    it.throwable.status_message?.let { msg ->
+                        showMsg(msg)
+                    }
+                }
+                is ViewState.Success -> {
+                    // adapter.submitData(it)
+                }
+                else -> {
+                    showMsg("Something went wrong")
+                }
+            }
+        })
+
+    }
+
+    private fun showMsg(msg: String) {
+        val snackbar = Snackbar.make(homeLayoutbinding.containerMain, msg, Snackbar.LENGTH_LONG)
+        snackbar.show()
     }
 
 }

@@ -6,5 +6,5 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
 interface SubRedditRepository {
-    fun getSubRedditPosts(postId: String, pageSize: Int): Flow<PagingData<SubRedditPost>>
+    suspend fun getSubRedditPosts(pageSize: Int): Flow<PagingData<SubRedditPost>>
 }

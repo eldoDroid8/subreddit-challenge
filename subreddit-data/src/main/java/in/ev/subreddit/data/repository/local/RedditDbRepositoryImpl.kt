@@ -5,8 +5,10 @@ import `in`.ev.subreddit.data.datasource.SubRedditRemoteMediator
 import `in`.ev.subreddit.data.datasource.remote.SubRedditRemoteDataSource
 import `in`.ev.subreddit.data.local.SubRedditDatabase
 import `in`.ev.subreddit.data.mappers.toDomain
+import `in`.ev.subreddit.domain.model.SubRedditPost
 import androidx.paging.*
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -15,6 +17,9 @@ class RedditDbRepositoryImpl @Inject constructor(
     private val db: SubRedditDatabase, private val remoteDataSource:
     SubRedditRemoteDataSource
 ) : SubRedditRepository {
+    override suspend fun getSubRedditPosts(pageSize: Int): Flow<PagingData<SubRedditPost>> {
+        TODO("Not yet implemented")
+    }
 
     /*@ExperimentalPagingApi
     override fun getSubRedditPosts(
@@ -34,9 +39,8 @@ class RedditDbRepositoryImpl @Inject constructor(
         return domainFlow.flowOn(Dispatchers.Default)
     }*/
 
-    @OptIn(ExperimentalPagingApi::class, FlowPreview::class)
+  /*  @OptIn(ExperimentalPagingApi::class, FlowPreview::class)
     override fun getSubRedditPosts(
-        postId: String,
         pageSize: Int
     ) = Pager(
         config = PagingConfig(pageSize),
@@ -45,5 +49,5 @@ class RedditDbRepositoryImpl @Inject constructor(
         flow {
             emit(it.map { it.toDomain(it) })
         }
-    }
+    }*/
 }

@@ -11,8 +11,8 @@ import javax.inject.Inject
 class GetPostsUseCaseImpl  @Inject constructor(private val repository:
                                                    SubRedditRepository): GetRedditPostUsecase {
     @OptIn(ExperimentalPagingApi::class, FlowPreview::class)
-    override suspend fun execute(postId: String, limit: Int): Flow<PagingData<SubRedditPost>> {
-        return repository.getSubRedditPosts(postId, limit)
+    override suspend fun execute(limit: Int): Flow<PagingData<SubRedditPost>> {
+        return repository.getSubRedditPosts(limit)
     }
 
 }

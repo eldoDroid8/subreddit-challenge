@@ -11,13 +11,11 @@ import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class RemoteRepoImpl @Inject constructor(private val remoteDataSource: SubRedditRemoteDataSource):
+class RemoteRepoImpl @Inject constructor(private val remoteDataSource: SubRedditRemoteDataSource) :
     SubRedditRepository {
-    override fun getSubRedditPosts(postId: String, pageSize: Int)= Pager(
-        PagingConfig(pageSize)
-    ) {
+    override suspend fun getSubRedditPosts(pageSize: Int) = Pager(PagingConfig(pageSize)) {
         SubredditPagingSource(
-           subRedditRemoteDataSource = remoteDataSource
+            subRedditRemoteDataSource = remoteDataSource
         )
     }.flow.flatMapMerge {
         flow {
