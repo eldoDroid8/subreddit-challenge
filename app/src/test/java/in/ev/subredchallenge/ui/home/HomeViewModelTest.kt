@@ -1,7 +1,5 @@
 package `in`.ev.subredchallenge.ui.home
 
-import `in`.ev.subreddit.domain.model.Error
-import `in`.ev.subreddit.domain.model.Response
 import `in`.ev.subredchallenge.CoroutinesTestRule
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import `in`.ev.subreddit.domain.usecase.GetPostsUseCaseImpl
@@ -56,20 +54,9 @@ class HomeViewModelTest {
     val postList: List<SubRedditPost> = mutableListOf<SubRedditPost>(posts1)
 
     val postsPagingData = PagingData.from(postList)
-    val errorResponse = Error( status_message = "service error")
-
-/*
-    private val networkResultSuccess = Response.ApiCallSuccess<List<Character>>(characters)
-    private val networkResultError = Response.ApiCallError((errorResponse))
-*/
-
-    private val networkLoadingT = Response.Loading<Boolean>(true)
-    private val networkLoadingF = Response.Loading<Boolean>(false)
 
     private val flowSuccess = flowOf(postsPagingData)
-    private val flowFailure = flowOf(errorResponse)
-    private val flowLoadingFalse = flowOf(networkLoadingF)
-    private val flowLoadingTrue = flowOf(networkLoadingT)
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
@@ -85,7 +72,6 @@ class HomeViewModelTest {
             viewModel.getSubRedditPosts()
             flowSuccess.collect {  data ->
                 assertNotNull(data)
-                //data.data?.isNotEmpty()?.let { assert(it) }
             }
 
         }

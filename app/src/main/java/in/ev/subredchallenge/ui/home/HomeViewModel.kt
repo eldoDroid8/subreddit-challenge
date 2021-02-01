@@ -16,6 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onCompletion
 
 class HomeViewModel @ViewModelInject constructor(
     private val getRedditPostUsecase: GetRedditPostUsecase
@@ -28,9 +29,6 @@ class HomeViewModel @ViewModelInject constructor(
         return getRedditPostUsecase.execute(Constants.PAGE_LIMIT).cachedIn(viewModelScope)
             .handleErrors()
     }
-
-    //fun getSubRedditPosts()
-
 
     //ToDO Move this to BaseViewModel later
     private fun <T> Flow<T>.handleErrors(): Flow<T> =

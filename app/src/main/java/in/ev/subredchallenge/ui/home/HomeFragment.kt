@@ -51,7 +51,9 @@ class HomeFragment : Fragment() {
     private fun initRecycerView() {
         adapter = HomePostAdapter(itemSelected)
         homeLayoutbinding.rvPosts.layoutManager = GridLayoutManager(context, 1)
-        homeLayoutbinding.rvPosts.adapter= adapter.withLoadStateFooter(LoaderStateAdapter { adapter.retry() })
+        homeLayoutbinding.rvPosts.adapter = adapter.withLoadStateFooter(
+            LoaderStateAdapter { adapter.retry() })
+
     }
 
     private fun fetchPosts() {
@@ -81,9 +83,6 @@ class HomeFragment : Fragment() {
                     it.throwable.status_message?.let { msg ->
                         showMsg(msg)
                     }
-                }
-                is ViewState.Success -> {
-                    // adapter.submitData(it)
                 }
                 else -> {
                     showMsg("Something went wrong")

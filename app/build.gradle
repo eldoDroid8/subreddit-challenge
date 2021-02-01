@@ -75,7 +75,6 @@ dependencies {
     implementation networkClient.interceptor
     implementation networkClient.okhttp
 
-    implementation others.shimmer
     implementation others.glide
 
     testImplementation "androidx.arch.core:core-testing:2.1.0"

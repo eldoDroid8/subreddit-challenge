@@ -29,7 +29,8 @@ class GetPostsUseCaseImplTest {
     }
 
     @Test
-    fun verifyRepository() = coroutinesTestRule.testDispatcher.runBlockingTest {
+    fun Given_repo_Get_Posts_When_verify_getsub_red_called() = coroutinesTestRule.testDispatcher
+        .runBlockingTest {
         coEvery {
             useCaseImpl.execute(any())
         }
