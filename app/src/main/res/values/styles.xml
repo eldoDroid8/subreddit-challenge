@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="GridLabel">
-        <item name="android:textColor">@color/blue_black_dark</item>
-        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextStyleBody">
@@ -12,7 +13,7 @@
 
     <style name="TextStyleScore">
         <item name="android:textSize">@dimen/font_size_small</item>
-        <item name="android:textColor">@color/red_dark</item>
+        <item name="android:textColor">@color/dark_red</item>
         <item name="android:textStyle">bold</item>
     </style>
 

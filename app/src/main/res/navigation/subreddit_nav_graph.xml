@@ -9,18 +9,6 @@
         android:id="@+id/subredditHomeFragment"
         android:name="in.ev.subredchallenge.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <!--<action
-            android:id="@+id/action_badCharHomeFragment_to_badCharDetailFragment"
-            app:destination="@id/badCharDetailFragment" />-->
+        tools:layout="@layout/fragment_home">
     </fragment>
-   <!-- <fragment
-        android:id="@+id/postDetailFragment"
-        android:name=""
-        android:label="fragment_post_detail">
-        <argument
-            android:name="bad_char_selected"
-            app:argType="in.ev.domain.model.Character" />
-    </fragment>-->
-
 </navigation>

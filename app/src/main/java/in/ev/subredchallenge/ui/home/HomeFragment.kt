@@ -3,6 +3,9 @@ package `in`.ev.subredchallenge.ui.home
 import `in`.ev.subredchallenge.BR
 import `in`.ev.subredchallenge.databinding.FragmentHomeBinding
 import `in`.ev.subredchallenge.ui.LoaderStateAdapter
+import `in`.ev.subreddit.domain.model.SubRedditPost
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +23,8 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var adapter: HomePostAdapter
+    val itemSelected: RecyclerviewItemSelected<SubRedditPost?>
+        get() = this::postSelected
 
     private lateinit var homeLayoutbinding: FragmentHomeBinding
     override fun onCreateView(
@@ -41,9 +46,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecycerView() {
-        val items: MutableList<HomeItemViewModel> = mutableListOf<HomeItemViewModel>()
-        // adapter = RedditPostAdapter(R.layout.list_item_home,items, POST_DIFF_UTIL)
-        adapter = HomePostAdapter()
+        adapter = HomePostAdapter(itemSelected)
         homeLayoutbinding.rvPosts.layoutManager = GridLayoutManager(context, 1)
         homeLayoutbinding.rvPosts.adapter= adapter.withLoadStateFooter(LoaderStateAdapter { adapter.retry() })
     }
@@ -59,6 +62,13 @@ class HomeFragment : Fragment() {
     private fun initDataBinding() {
         homeLayoutbinding.setVariable(BR.viewModel, homeViewModel)
         homeLayoutbinding.executePendingBindings()
+    }
+
+    private fun postSelected(post: SubRedditPost?) {
+        post?.url?.let { url ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        }
     }
 
 }

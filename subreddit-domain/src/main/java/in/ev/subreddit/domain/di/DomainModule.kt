@@ -1,11 +1,9 @@
 package `in`.ev.subreddit.domain.di
 
-import `in`.ev.domain.repository.SubRedditPostsRepository
 import `in`.ev.subreddit.domain.usecase.GetPostsUseCaseImpl
 import `in`.ev.subreddit.domain.usecase.GetRedditPostUsecase
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton

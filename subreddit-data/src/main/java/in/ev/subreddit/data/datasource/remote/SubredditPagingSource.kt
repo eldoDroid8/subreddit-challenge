@@ -11,8 +11,6 @@ class SubredditPagingSource(
     private val subRedditRemoteDataSource: SubRedditRemoteDataSource
 ) : PagingSource<String, Children>() {
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Children> {
-        //return try {
-
         val response = subRedditRemoteDataSource.getSubRedditPosts(
             params.loadSize.toString(),
             after = params.key ?: "",

@@ -2,7 +2,7 @@ package `in`.ev.subreddit.data.di.module
 import `in`.ev.data.model.ErrorEntity
 import `in`.ev.subreddit.data.BuildConfig
 import `in`.ev.subreddit.data.remote.SubRedditApi
-import `in`.ev.subreddit.data.utils.NetworkConstants
+import `in`.ev.subreddit.data.utils.Constants
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -62,7 +62,7 @@ object NetworkModule {
     @Singleton
     fun provideUrl(): String {
         //we can move the url to buildConfig
-        return NetworkConstants.ENDPOINT
+        return Constants.ENDPOINT
     }
 
     @Provides
