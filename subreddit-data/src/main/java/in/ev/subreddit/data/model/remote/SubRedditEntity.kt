@@ -31,7 +31,7 @@ data class SubRedditInfo(
     @Json(name = "author")
     val author: String,
     @Json(name = "author_fullname")
-    val authorFullname: String,
+    val authorFullname: String?,
     @Json(name = "created_utc")
     val createdUtc: Double,
     @Json(name = "id")

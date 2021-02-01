@@ -5,6 +5,6 @@ import `in`.ev.subreddit.domain.model.SubRedditPost
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
-interface SubRedditRemoteRepository {
+interface SubRedditRepository {
     fun getSubRedditPosts(postId: String, pageSize: Int): Flow<PagingData<SubRedditPost>>
 }

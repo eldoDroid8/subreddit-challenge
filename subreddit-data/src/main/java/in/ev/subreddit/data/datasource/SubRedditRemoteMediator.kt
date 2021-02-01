@@ -18,8 +18,7 @@ import com.vikas.paging3.repository.local.SubRedditKeyDao
 @OptIn(ExperimentalPagingApi::class)
 class SubRedditRemoteMediator (
     private val db: SubRedditDatabase,
-    private val subRedditRemoteDataSource: SubRedditRemoteDataSource,
-    private val postId: String
+    private val subRedditRemoteDataSource: SubRedditRemoteDataSource
 ) : RemoteMediator<Int, TblSubReddit>() {
     private val redditPostDao: SubRedditPostDao = db.posts()
     private val paginationKeyDao: SubRedditKeyDao = db.remoteKeys()
@@ -28,6 +27,7 @@ class SubRedditRemoteMediator (
         loadType: LoadType,
         state: PagingState<Int, TblSubReddit>
     ): MediatorResult {
+        val postId = "Android"
         val loadKey = when (loadType) {
             REFRESH -> null
             PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
@@ -42,8 +42,10 @@ class SubRedditRemoteMediator (
             }
         }
         val response = subRedditRemoteDataSource.getSubRedditPosts(
-            state.config
-                .initialLoadSize.toString(), after = loadKey ?: ""
+            limit = when(loadType) {
+                REFRESH -> state.config.initialLoadSize.toString()
+                else -> state.config.pageSize.toString()
+            }, after = loadKey ?: "",
         )
 
         return when (response) {
@@ -68,13 +70,12 @@ class SubRedditRemoteMediator (
                     itemsToInsert?.let {
                         redditPostDao.insertAll(it)
                     }
-                    MediatorResult.Success(endOfPaginationReached = itemsToInsert?.isEmpty() == true)
                 }
+                MediatorResult.Success(endOfPaginationReached = itemsToInsert?.isEmpty())
             }
             is EntityResultWrapper.Error -> {
                 MediatorResult.Error(Throwable(response.error.status_message))
             }
         }
-        //return MediatorResult.Success(endOfPaginationReached = true)
     }
 }

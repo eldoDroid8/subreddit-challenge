@@ -1,5 +1,6 @@
 package `in`.ev.subredchallenge.ui.home
 
+import `in`.ev.subredchallenge.utils.Constants
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import `in`.ev.subreddit.domain.usecase.GetRedditPostUsecase
 import androidx.hilt.lifecycle.ViewModelInject
@@ -16,26 +17,9 @@ import kotlinx.coroutines.flow.Flow
 class HomeViewModel  @ViewModelInject constructor(
     private val getRedditPostUsecase: GetRedditPostUsecase
 ) : ViewModel() {
-    //private val homeNavEvents = SingleLiveEvent<HomeNavigation>()
-    //val stateHomeEvents: LiveData<HomeNavigation> = homeNavEvents
-    private val postList = MutableLiveData<List<SubRedditPost>>()
-    val observableList: LiveData<List<SubRedditPost>> = this.postList
-    val showShimmerAnimation = MutableLiveData(true)
-    val itemSelected: RecyclerviewItemSelected<SubRedditPost>
-        get() = this::postSelected
 
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     suspend fun getSubRedditPosts(): Flow<PagingData<SubRedditPost>> {
-        return  getRedditPostUsecase.execute("",10).cachedIn(viewModelScope)
+        return  getRedditPostUsecase.execute("",Constants.PAGE_LIMIT).cachedIn(viewModelScope)
     }
-
-    /*@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-    fun getSubRedditPosts(): Flow<PagingData<SubRedditInfo>> {
-        return repository.getSubRedditPosts("",10).cachedIn(viewModelScope)
-    }
-*/
-    private fun postSelected(post: SubRedditPost) {
-        ///homeNavEvents.value = HomeNavigation.NavigateToDetail(character)
-    }
-
 }

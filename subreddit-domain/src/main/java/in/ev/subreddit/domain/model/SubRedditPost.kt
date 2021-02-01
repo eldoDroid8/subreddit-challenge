@@ -3,7 +3,7 @@ package `in`.ev.subreddit.domain.model
 data class SubRedditPost (
     val id: String,
     val author: String,
-    val authorFullname: String,
+    val authorFullname: String?,
     val createdUtc: Double,
     val name: String,
     val numComments: Int,

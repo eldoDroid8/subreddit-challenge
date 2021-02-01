@@ -8,8 +8,9 @@ import `in`.ev.subreddit.data.model.remote.SubRedditInfo
 }*/
 
 fun SubRedditInfo.toRoomEntity(redditInfo: SubRedditInfo): TblSubReddit {
-    return TblSubReddit(redditInfo.id,redditInfo.author,redditInfo.authorFullname, redditInfo
-        .createdUtc, redditInfo.name, redditInfo.numComments, redditInfo.score, redditInfo
+    return TblSubReddit(redditInfo.name, redditInfo.id,redditInfo.author,redditInfo
+        .authorFullname, redditInfo
+        .createdUtc, redditInfo.numComments, redditInfo.score, redditInfo
         .subreddit, redditInfo.subredditId,redditInfo
         .subredditType, redditInfo.thumbnail,redditInfo.title, redditInfo.totalAwardsReceived,
         redditInfo.ups,redditInfo.url)

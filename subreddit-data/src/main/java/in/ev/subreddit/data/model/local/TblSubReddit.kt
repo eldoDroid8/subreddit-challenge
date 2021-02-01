@@ -7,11 +7,11 @@ import com.squareup.moshi.Json
 @Entity(tableName = "posts")
 class TblSubReddit (
     @PrimaryKey
+    val name: String,
     val id: String,
     val author: String,
-    val authorFullname: String,
+    val authorFullname: String?,
     val createdUtc: Double,
-    val name: String,
     val numComments: Int,
     val score: Int,
     val subreddit: String,
