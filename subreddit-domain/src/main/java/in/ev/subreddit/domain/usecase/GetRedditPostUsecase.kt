@@ -5,5 +5,5 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
 interface GetRedditPostUsecase {
-    suspend fun execute(postId: String, limit: Int): Flow<PagingData<SubRedditPost>>
+    suspend fun execute(limit: Int): Flow<PagingData<SubRedditPost>>
 }
