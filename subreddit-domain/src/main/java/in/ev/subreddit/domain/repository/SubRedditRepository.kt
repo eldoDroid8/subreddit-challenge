@@ -1,6 +1,5 @@
-package `in`.ev.domain.repository
+package `in`.ev.subreddit.domain.repository
 
-import `in`.ev.domain.model.Response
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package `in`.ev.domain.model
+package `in`.ev.subreddit.domain.model
 
 
 sealed  class Response<out T> {

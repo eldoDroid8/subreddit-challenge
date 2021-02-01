@@ -1,11 +1,9 @@
 package `in`.ev.subreddit.data.di.module
 
 import `in`.ev.data.model.ErrorEntity
-import `in`.ev.domain.repository.SubRedditRepository
+import `in`.ev.subreddit.domain.repository.SubRedditRepository
 import `in`.ev.subreddit.data.datasource.remote.SubRedditRemoteDataSource
-import `in`.ev.subreddit.data.local.SubRedditDatabase
 import `in`.ev.subreddit.data.remote.SubRedditApi
-import `in`.ev.subreddit.data.repository.local.RedditDbRepositoryImpl
 import `in`.ev.subreddit.data.repository.remote.RemoteRepoImpl
 import android.content.Context
 import androidx.room.Room
@@ -17,21 +15,6 @@ import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Retrofit
 import javax.inject.Singleton
-
-
-@Module
-@InstallIn(ApplicationComponent::class)
-object DatabaseModule {
-    @Provides
-    @Singleton
-    fun provideRoomDb(@ApplicationContext context: Context): SubRedditDatabase {
-        val dbBuilder = Room.databaseBuilder(context, SubRedditDatabase::class.java, "subreddit.db")
-        return dbBuilder
-        .fallbackToDestructiveMigration()
-        .build()
-    }
-
-}
 
 
 @Module
@@ -58,13 +41,5 @@ object RepoModule {
     ): SubRedditRepository {
         return RemoteRepoImpl(dataSource)
     }
-
-    /*@Provides
-    @Singleton
-    fun provideDbRepoImpl(db: SubRedditDatabase,
-        dataSource: SubRedditRemoteDataSource
-    ): SubRedditRepository {
-        return RedditDbRepositoryImpl(db, dataSource)
-    }*/
 
 }

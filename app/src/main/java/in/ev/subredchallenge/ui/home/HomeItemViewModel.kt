@@ -4,8 +4,10 @@ import `in`.ev.subreddit.domain.model.SubRedditPost
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class HomeItemViewModel(val post: SubRedditPost?, private val itemSelected:
-RecyclerviewItemSelected<SubRedditPost>) {
+class HomeItemViewModel(
+    private val post: SubRedditPost?, private val itemSelected:
+    RecyclerviewItemSelected<SubRedditPost>
+) {
     val id = post?.id
     val title: LiveData<String> = MutableLiveData(post?.title)
     val author: LiveData<String> = MutableLiveData(post?.author)
@@ -14,11 +16,8 @@ RecyclerviewItemSelected<SubRedditPost>) {
 
     fun onPostSelected() {
         if (post != null) {
-            itemSelected?.invoke(post)
+            itemSelected.invoke(post)
         }
     }
 
-
-    override fun equals(other: Any?) = (other is HomeItemViewModel)
-            && id == other.id
 }

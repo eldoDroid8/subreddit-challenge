@@ -1,20 +1,14 @@
 package `in`.ev.subredchallenge.ui.home
 
 import `in`.ev.subredchallenge.R
-import `in`.ev.subredchallenge.databinding.ListItemHomeBinding
 import `in`.ev.subredchallenge.utils.POST_SUB_DIFF_UTIL
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.GlideBuilder
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class HomePostAdapter(
     private val itemSelected:

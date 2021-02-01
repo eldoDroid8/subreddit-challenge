@@ -1,12 +1,9 @@
 package `in`.ev.subreddit.domain.usecase
 
-import `in`.ev.domain.repository.SubRedditRepository
+import `in`.ev.subreddit.domain.repository.SubRedditRepository
 import `in`.ev.subreddit.domain.CoroutinesTestRule
-import `in`.ev.subreddit.domain.model.SubRedditPost
-import androidx.paging.PagingData
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule

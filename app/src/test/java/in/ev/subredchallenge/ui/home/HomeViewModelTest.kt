@@ -1,14 +1,12 @@
 package `in`.ev.subredchallenge.ui.home
 
-import `in`.ev.domain.model.Error
-import `in`.ev.domain.model.Response
+import `in`.ev.subreddit.domain.model.Error
+import `in`.ev.subreddit.domain.model.Response
 import `in`.ev.subredchallenge.CoroutinesTestRule
 import `in`.ev.subreddit.domain.model.SubRedditPost
 import `in`.ev.subreddit.domain.usecase.GetPostsUseCaseImpl
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK

@@ -19,10 +19,10 @@ class SubredditPagingSource(
 
         return when (response) {
                 is EntityResultWrapper.Success -> {
-                    val data = response.data?.data?.children
+                    val data = response.data.data.children
                         Page(
-                            data = data, prevKey = response.data?.data?.before,
-                            nextKey = response.data?.data?.after
+                            data = data, prevKey = response.data.data.before,
+                            nextKey = response.data.data.after
                         )
                     }
                 is EntityResultWrapper.Error -> {
@@ -31,7 +31,7 @@ class SubredditPagingSource(
             }
         }
 
-    override fun getRefreshKey(state: PagingState<String, Children>): String? {
+    override fun getRefreshKey(state: PagingState<String, Children>): String {
         return ""
     }
 

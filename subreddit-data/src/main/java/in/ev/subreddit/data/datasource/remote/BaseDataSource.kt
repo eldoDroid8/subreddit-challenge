@@ -1,7 +1,8 @@
 package `in`.ev.subreddit.data.datasource.remote
 
 import `in`.ev.data.model.EntityResultWrapper
-import `in`.ev.data.model.EntityResultWrapper.*
+import `in`.ev.data.model.EntityResultWrapper.Error
+import `in`.ev.data.model.EntityResultWrapper.Success
 import `in`.ev.data.model.ErrorEntity
 import com.squareup.moshi.JsonAdapter
 import retrofit2.HttpException

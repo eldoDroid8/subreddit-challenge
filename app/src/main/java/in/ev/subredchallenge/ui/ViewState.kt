@@ -1,6 +1,6 @@
 package `in`.ev.subredchallenge.ui
 
-import `in`.ev.domain.model.Error
+import `in`.ev.subreddit.domain.model.Error
 
 sealed class ViewState<out T: Any> {
 
